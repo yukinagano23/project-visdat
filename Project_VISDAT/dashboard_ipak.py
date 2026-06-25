@@ -6,6 +6,8 @@ Cara menjalankan:
     streamlit run dashboard_ipak.py
 """
 
+import os
+
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
@@ -23,7 +25,11 @@ st.set_page_config(
 # ----------------------------------------------------------------------------
 # LOAD & SIAPKAN DATA
 # ----------------------------------------------------------------------------
-CSV_PATH = "BPS_IPAK_Indonesia_2012-2024.csv"
+# Gunakan path relatif terhadap lokasi file ini, supaya tetap berhasil dibaca
+# baik dijalankan secara lokal maupun di Streamlit Cloud (working directory
+# bisa berbeda di kedua tempat itu).
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+CSV_PATH = os.path.join(BASE_DIR, "BPS_IPAK_Indonesia_2012-2024.csv")
 
 
 @st.cache_data
